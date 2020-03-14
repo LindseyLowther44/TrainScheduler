@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+  </head>
+<body>
+  <div id="wrap">
+    <div class="jumbotron jumbotron-fluid" id="jumbotron">
+        <div class="container">
+          <h1 class="display-3" id="jumbo">
+            <strong>Magic Train Scheduler</strong>
+          </h1>
+          <h3>Whereever, whenever... </h3>
+        </div>
+      </div>
+    ​
+      <div class="card">
+        <div class="card-header" id="card-scheduler">
+          Current Train Schedule
+        </div>
+        <table id="trainScheduler">
+          <thead>
+            <tr>
+              <th id="trainName">Train Name</th>
+              <th id ="destination">Destination</th>
+              <th id="frequency">Frequency (min)</th>
+              <th id="nextArrival">Next Arrival</th>
+              <th id="minAway">Minutes Away</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+          </tbody>
+          </table>
+      </div>
+    ​
+
+    ​
+      <div class="card">
+        <div class="card-header" id="cardHead2">
+          Add Train
+        </div>
+        <form>
+          <div class="form-group">
+            <label for="trainName">Train Name:</label>
+            <input type="text" class="form-control" id="train-input" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="train-destination">Destination:</label>
+            <input type="text" class="form-control" id="dest-input" aria-describedby="train-destination">
+          </div>
+          <div class="form-group">
+            <label for="firstTime">First Train Time (HH:mm - military time):</label>
+            <input type="time" class="form-control" id="time-input">
+          </div>
+          <div class="form-group">
+            <label for="frequency">Frequency (min):</label>
+            <input type="number" class="form-control" id="freq-input">
+          </div>
+          <button type="submit" id="addTrainBtn" class="btn btn-primary">Submit</button>
+        </form>
+      
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-database.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
+</body>
+</html>

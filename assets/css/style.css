@@ -1,0 +1,31 @@
+body {
+    background-image: url("https://images.unsplash.com/photo-1434871619871-1f315a50efba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80");
+    background-size: flex;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#wrap {
+    width:60rem;
+    margin:0 auto;
+
+}
+.jumbotron {
+    background: none;
+    padding: none;
+}
+h1 {
+    font-family: 'Roboto Mono', monospace;
+
+}
+
+.card {
+    border: 5px solid black;
+    border-radius: 10px;
+}
+
+form { 
+    padding: 3%;
+}
+.card-header {
+    background-color: coral;
+}
