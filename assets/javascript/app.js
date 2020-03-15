@@ -15,13 +15,15 @@ var firebaseConfig = {
 $("#addTrainBtn").on('click', function(event){
   event.preventDefault();
 
-  trainName = $("#train-input").val().trim();
-  trainDestination = $("#dest-input").val().trim();
-  firstTime = moment($("#time-input").val().trim(), "HH:mm").format("HH:mm");
+  var trainName = $("#train-input").val().trim();
+  var trainDestination = $("#dest-input").val().trim();
+  var firstTime = moment($("#time-input").val().trim(), "HH:mm").format("HH:mm");
   var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
   console.log(firstTime);
 
-  trainFrequency = parseInt($("#freq-input").val().trim());
+  var currentTime = moment();
+
+  var trainFrequency = parseInt($("#freq-input").val().trim());
   console.log(trainFrequency);
 
   var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
@@ -32,20 +34,25 @@ $("#addTrainBtn").on('click', function(event){
 
   var tMinutesTillTrain = trainFrequency - tRemainder;
   console.log(tMinutesTillTrain);
-  
+
+
+  var nextTrain = moment().add(firstTime, "minutes");
+  console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
   var newTrain = {
     name: trainName,
     destination: trainDestination,
-    time: firstTime,
+    time: nextTrain,
     frequency: trainFrequency,
-    minutesAway: tMinutesTillTrain
+    minutesAway: tMinutesTillTrain,
   };
   console.log(newTrain.minutesAway)
-  database.ref().push(newTrain);
+
+  database.ref().push();
 
   console.log(newTrain.name);
   console.log(newTrain.destination);
-  console.log(newTrain.time);
+  console.log(newTrain.tRemainder);
   console.log(newTrain.frequency);
   console.log(newTrain.minutesAway)
 
@@ -53,24 +60,25 @@ $("#addTrainBtn").on('click', function(event){
 
 database.ref().on("child_added", function(childSnapshot) {
 
- 
-  // console.log(childSnapshot.val());
+  console.log(childSnapshot.val());
 
   trainName = childSnapshot.val().name;
   trainDestination = childSnapshot.val().destination;
-  trainTime = childSnapshot.val().first;
+  nextTrain = childSnapshot.val().time;
   trainFrequency = childSnapshot.val().frequency;
-
-
+  tMinutesTillTrain =childSnapshot.val().minutesAway;
+  
   var newRow = $("<tr>").append(
     $("<td>").text(trainName),
     $("<td>").text(trainDestination),
     $("<td>").text(trainFrequency),
-    $("<td>").text(trainTime),
-    $("<td>").text()       
+    $("<td>").text(nextTrain),
+    $("<td>").text(tMinutesTillTrain)
   );
 
-  $("#trainScheduler > tbody").append(newRow)
-});
+  $("#trainScheduler > tbody").append(newRow);
+
+  
+})
 
 
